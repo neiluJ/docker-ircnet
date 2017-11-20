@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+SCRIPT=$(readlink -f "$0")
+
+
+export DEV_UID=`id -u`
+export DEV_GID=`id -g`
+export WHOAMI=`whoami`
+export CONFIG_PATH=$(dirname "$SCRIPT")
+
+docker-compose "$@"

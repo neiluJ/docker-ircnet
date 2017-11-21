@@ -52,7 +52,7 @@ cd newserv-master/
 kill -9 `ps -ef | grep "newserv" | grep -v grep | awk '{print $2}'`
 sqlite3
 .open chanserv.db
-update users set flags=17390,password='yourpassword' where id=1;
+update users set flags=17388,password='yourpassword' where id=1;
 .quit
 ./newserv > /dev/null 2>&1
 ```

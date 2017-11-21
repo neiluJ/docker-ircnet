@@ -12,6 +12,10 @@ services:
             - "./config/ircd.conf:/home/ircnet/ircd/lib/ircd.conf:rw"
             - "./config/ircd.motd:/home/ircnet/ircd/lib/ircd.motd:rw"
             - "./config/newserv.conf:/home/ircnet/newserv-master/newserv.conf:rw"
+            - "./newserv-db/chanserv.db:/home/ircnet/newserv-master/chanserv.db"
+            - "./newserv-db/fakeusers.db:/home/ircnet/newserv-master/fakeusers.db"
+            - "./newserv-db/newserv.db:/home/ircnet/newserv-master/newserv.db"
+            - "./newserv-db/noperserv.db:/home/ircnet/newserv-master/noperserv.db"
         cap_add:
             - SYS_PTRACE
         environment:

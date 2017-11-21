@@ -22,7 +22,8 @@ RUN apt-get -qq update && apt-get install -qq -y curl \
     unzip \
     python \
     libpcre3 \
-    libpcre3-dev
+    libpcre3-dev \
+    sqlite
 
 RUN useradd -c 'IRC user' -m -d /home/ircnet -s /bin/bash ircnet
 

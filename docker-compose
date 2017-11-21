@@ -2,6 +2,22 @@
 
 SCRIPT=$(readlink -f "$0")
 
+# manage newserv db files
+if [ ! -f ./newserv-db/chanserv.db ]; then
+    touch ./newserv-db/chanserv.db
+fi
+
+if [ ! -f ./newserv-db/fakeusers.db ]; then
+    touch ./newserv-db/fakeusers.db
+fi
+
+if [ ! -f ./newserv-db/newserv.db ]; then
+    touch ./newserv-db/newserv.db
+fi
+
+if [ ! -f ./newserv-db/noperserv.db ]; then
+    touch ./newserv-db/noperserv.db
+fi
 
 export DEV_UID=`id -u`
 export DEV_GID=`id -g`

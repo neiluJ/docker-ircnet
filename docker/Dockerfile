@@ -17,7 +17,12 @@ RUN apt-get -qq update && apt-get install -qq -y curl \
     gcc \
     flex \
     make \
-    bison
+    bison \
+    wget \
+    unzip \
+    python \
+    libpcre3 \
+    libpcre3-dev
 
 RUN useradd -c 'IRC user' -m -d /home/ircnet -s /bin/bash ircnet
 
@@ -31,11 +36,19 @@ RUN cd /home/ircnet && tar xzf $IRCU_SOURCES && \
     ./configure --prefix=/home/ircnet/ircd --with-maxcon=100000 && \
     make && make install
 
+RUN cd /home/ircnet && \
+    wget https://github.com/quakenet/newserv/archive/master.zip && \
+    unzip master.zip && \
+    cd newserv-master && \
+    ./configure && \
+    make && make install
+
 USER root
 
 COPY bootstrap.sh /root/bootstrap.sh
 RUN chmod 755 /root/bootstrap.sh
 
 EXPOSE 6667
+EXPOSE 4400
 
 ENTRYPOINT /root/bootstrap.sh

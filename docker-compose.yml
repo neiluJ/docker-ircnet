@@ -8,13 +8,15 @@ services:
         ports:
             - "6667:6667"
         volumes:
-            - "./sources:/home/ircnet/sources:rw"
-            - "./config/ircd.conf:/home/ircnet/ircd/ircd.conf:rw"
+            - "./config/ircd.conf:/home/ircnet/ircd/lib/ircd.conf:rw"
+            - "./config/ircd.motd:/home/ircnet/ircd/lib/ircd.motd:rw"
         cap_add:
             - SYS_PTRACE
         environment:
             - DEV_UID=${DEV_UID}
             - DEV_GID=${DEV_GID}
+            - IRCU_VERSION=${IRCU_VERSION}
+            - IRCU_SOURCES=${IRCU_SOURCES}
         networks:
             - default
 

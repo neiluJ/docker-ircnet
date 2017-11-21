@@ -3,9 +3,6 @@ MAINTAINER  Ju <julien@nitronet.org>
 
 ARG DOCKER_TIMEZONE=Europe/Paris
 
-ENV IRCU_SOURCES ircu2.10.12.18.tar.gz
-ENV IRCU_VERSION 2.10.12.18
-
 # Configure timezone
 # -----------------------------------------------------------------------------
 RUN echo $DOCKER_TIMEZONE > /etc/timezone; dpkg-reconfigure -f noninteractive tzdata
@@ -27,22 +24,24 @@ RUN apt-get -qq update && apt-get install -qq -y curl \
 
 RUN useradd -c 'IRC user' -m -d /home/ircnet -s /bin/bash ircnet
 
-COPY sources/$IRCU_SOURCES /home/ircnet/$IRCU_SOURCES
-
 # install IRC things
 USER ircnet
 
-RUN cd /home/ircnet && tar xzf $IRCU_SOURCES && \
-    cd ircu$IRCU_VERSION && \
+RUN cd /home/ircnet && \
+    wget https://github.com/quakenet/snircd/archive/master.zip && \
+    unzip master.zip && \
+    cd snircd-master && \
     ./configure --prefix=/home/ircnet/ircd --with-maxcon=100000 && \
-    make && make install
+    make && make install && \
+    cd .. && rm master.zip
 
 RUN cd /home/ircnet && \
     wget https://github.com/quakenet/newserv/archive/master.zip && \
     unzip master.zip && \
     cd newserv-master && \
     ./configure && \
-    make && make install
+    make && make install && \
+    cd .. && rm master.zip
 
 USER root
 

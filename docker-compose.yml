@@ -9,7 +9,7 @@ services:
             - "6667:6667"
             - "4400:4400"
         volumes:
-            - "./config/ircd.conf:/home/ircnet/ircd/lib/ircd.conf:rw"
+            - "./config/snircd.conf:/home/ircnet/ircd/lib/ircd.conf:rw"
             - "./config/ircd.motd:/home/ircnet/ircd/lib/ircd.motd:rw"
             - "./config/newserv.conf:/home/ircnet/newserv-master/newserv.conf:rw"
             - "./newserv-db/chanserv.db:/home/ircnet/newserv-master/chanserv.db"
@@ -21,8 +21,6 @@ services:
         environment:
             - DEV_UID=${DEV_UID}
             - DEV_GID=${DEV_GID}
-            - IRCU_VERSION=${IRCU_VERSION}
-            - IRCU_SOURCES=${IRCU_SOURCES}
         networks:
             - default
 

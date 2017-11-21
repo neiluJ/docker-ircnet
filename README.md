@@ -3,8 +3,8 @@
 This utility provides a simple way to run a local test IRC network.
 
 Features:
-* ircu2.10.12.18
-* QuakeNet's Newserv Services (Q / N)
+* ircu2.10.12+snircd by QuakeNet (https://github.com/quakenet/snircd)
+* QuakeNet's Newserv Services (Q / N) (https://github.com/quakenet/newserv)
 
 Requirements:
 * Docker + docker-compose
@@ -30,7 +30,7 @@ Be an IRC Operator: ```/oper julien operpass```.
 
 ## Custom Configuration
 
-* Edit ```config/ircd.conf``` to fit your needs.
+* Edit ```config/snircd.conf``` to fit your needs.
 * Edit MOTD ```config/ircd.motd```
 * Edit Newserv Config ```config/newserv.conf```
 

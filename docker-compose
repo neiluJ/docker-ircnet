@@ -22,7 +22,5 @@ fi
 export DEV_UID=`id -u`
 export DEV_GID=`id -g`
 export WHOAMI=`whoami`
-export IRCU_SOURCES="ircu2.10.12.18.tar.gz"
-export IRCU_VERSION="2.10.12.18"
 
 docker-compose "$@"
